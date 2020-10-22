@@ -1,0 +1,199 @@
+#include<cmath>
+# include "iGraphics.h"
+#define  pi acos(-1)*2.00
+int xm1=0, ym1=400,xm2=1800,ym2=400,xm3=900,ym3=0,xm4=900,ym4=800, radius =1;
+int left=50,bottom=50,dx=16,dy=16;
+double posx=0,posy=ym1,size=1,posx1=0,posy1=ym1,posx2=0,posy2=ym1;
+double t,diff,sum,k1=1,k2=2,k3=3;
+double period=1.00,amp1=100,amp2=200,amp3=300,x;
+/*
+	function iDraw() is called again and again by the system.
+*/
+
+
+void iDraw()
+{
+    //place your drawing codes here
+    //iClear();
+    iSetColor(255,0,0);
+iLine(xm1,ym1,xm2,ym2);
+    iSetColor(255,0,0);
+iLine(xm3,ym3,xm4,ym4);
+if(posx>1800)
+    posx=0;
+while(posx<=xm2){
+        diff=posx-xm3;
+//x=pi;
+//printf("%lf %lf %lf\n",x,period,x/period);
+//x=pi/period;
+x=(pi/180.00)*diff;
+sum=amp1*sin(x*k1);
+printf("x = %lf sum or y =%lf\n",x,sum);
+
+posy=ym2+sum;
+
+iSetColor(0,255,255);
+//iFilledCircle(posx,posy,radius);
+iPoint(posx,posy,size);
+printf("%lf %lf\n",posx,posy);
+    posx+=0.1;
+}
+if(posx1>1800)
+    posx1=0;
+while(posx1<=xm2){
+        diff=posx1-xm3;
+//x=pi;
+//printf("%lf %lf %lf\n",x,period,x/period);
+//x=pi/period;
+x=(pi/180.00)*diff;
+sum=amp2*sin(x*k2);
+printf("x = %lf sum or y =%lf\n",x,sum);
+
+posy1=ym2+sum;
+
+iSetColor(0,100,255);
+//iFilledCircle(posx,posy,radius);
+iPoint(posx1,posy1,size);
+printf("%lf %lf\n",posx,posy);
+    posx1+=0.1;
+}
+if(posx2>1800)
+    posx2=0;
+while(posx2<=xm2){
+        diff=posx2-xm3;
+//x=pi;
+//printf("%lf %lf %lf\n",x,period,x/period);
+//x=pi/period;
+x=(pi/180.00)*diff;
+sum=amp3*cos(x*k3);
+printf("x = %lf sum or y =%lf\n",x,sum);
+
+posy2=ym2+sum;
+
+iSetColor(100,255,255);
+//iFilledCircle(posx,posy,radius);
+iPoint(posx2,posy2,size);
+printf("%lf %lf\n",posx,posy);
+    posx2+=0.1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+/*
+	function iMouseMove() is called when the user presses and drags the mouse.
+	(mx, my) is the position where the mouse pointer is.
+*/
+void iMouseMove(int mx, int my)
+{
+    //printf("x = %d, y= %d\n",mx,my);
+    //place your codes here
+}
+
+/*
+	function iMouse() is called when the user presses/releases the mouse.
+	(mx, my) is the position where the mouse pointer is.
+*/
+void iMouse(int button, int state, int mx, int my)
+{
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+    {
+        //place your codes here
+        //printf("x = %d, y= %d\n",mx,my);
+
+
+    }
+    if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+    {
+        //place your codes here
+
+    }
+}
+
+/*
+	function iKeyboard() is called whenever the user hits a key in keyboard.
+	key- holds the ASCII value of the key pressed.
+*/
+void iKeyboard(unsigned char key)
+{
+    if(key == '1')
+    {
+        while(posx!=0)
+        amp1+=5;
+
+    }
+        if(key == '2')
+    {
+        if(amp1>100)
+        amp1-=5;
+    }
+    if(key == '3')
+    {
+
+        amp2+=5;
+    }
+    if(key == '4')
+    {
+        if(amp2>100)
+        amp2-=5;
+    }
+    if(key == '5')
+    {
+        amp3+=5;
+    }
+    if(key == '6')
+    {
+        if(amp3>100)
+        amp3-=5;
+    }
+
+    //place your codes for other keys here
+}
+
+/*
+	function iSpecialKeyboard() is called whenver user hits special keys like-
+	function keys, home, end, pg up, pg down, arraows etc. you have to use
+	appropriate constants to detect them. A list is:
+	GLUT_KEY_F1, GLUT_KEY_F2, GLUT_KEY_F3, GLUT_KEY_F4, GLUT_KEY_F5, GLUT_KEY_F6,
+	GLUT_KEY_F7, GLUT_KEY_F8, GLUT_KEY_F9, GLUT_KEY_F10, GLUT_KEY_F11, GLUT_KEY_F12,
+	GLUT_KEY_LEFT, GLUT_KEY_UP, GLUT_KEY_RIGHT, GLUT_KEY_DOWN, GLUT_KEY_PAGE UP,
+	GLUT_KEY_PAGE DOWN, GLUT_KEY_HOME, GLUT_KEY_END, GLUT_KEY_INSERT
+*/
+void iSpecialKeyboard(unsigned char key)
+{
+
+    if(key == GLUT_KEY_END)
+    {
+        exit(0);
+    }
+    //place your codes for other keys here
+}
+
+
+int main()
+{
+    //place your own initialization codes here.
+    iInitialize(1800, 800, "Demo!");
+    return 0;
+}
